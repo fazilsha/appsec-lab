@@ -5,6 +5,6 @@ const server = http.createServer((req, res) => {
   res.end('AppSec Lab Running 🚀');
 });
 
-server.listen(3000, () => {
+server.listen(3030, () => {
   console.log('Server running on port 3000');
 });
