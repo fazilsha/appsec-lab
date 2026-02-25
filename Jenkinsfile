@@ -9,6 +9,12 @@ pipeline {
             }
         }
 
+	stage('SAST - Semgrep') {
+    	steps {
+        	sh 'semgrep --config=auto . || true'
+    		}
+	}
+
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t appsec-lab:1.0 .'
@@ -21,5 +27,10 @@ pipeline {
                 sh 'docker run -d -p 4000:3030 --name appsec-test appsec-lab:1.0'
             }
         }
+	stage('SAST - Semgrep') {
+    		steps {
+        	sh 'semgrep --config=auto .'
+    	}
+}
     }
 }
