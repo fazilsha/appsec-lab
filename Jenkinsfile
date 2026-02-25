@@ -17,6 +17,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
+                sh 'docker rm -f appsec-test || true'
                 sh 'docker run -d -p 4000:3030 --name appsec-test appsec-lab:1.0'
             }
         }
