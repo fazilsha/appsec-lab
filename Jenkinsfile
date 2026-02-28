@@ -11,7 +11,7 @@ pipeline {
 
 	stage('SAST - Semgrep') {
     	steps {
-        	sh 'semgrep --config=auto . || true'
+        	sh 'semgrep --config=auto --error . || true'
     		}
 	}
 
