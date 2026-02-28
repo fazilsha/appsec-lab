@@ -1,18 +1,30 @@
-const express = require('express')
-const { exec } = require('child_process')
-const app = express()
+const express = require('express');
+const { execFile } = require('child_process');
 
-// ❌ Command Injection
-app.get('/cmd', (req, res) => {
-    const userInput = req.query.input
-    exec(userInput, (err, stdout, stderr) => {
-        res.send(stdout)
-    })
-})
+const app = express();
+app.use(express.json());
 
-// ❌ Hardcoded Secret
-const API_KEY = "SUPER_SECRET_API_KEY_12345"
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+app.use(csrf({ cookie: true }));
+
+app.post('/run', (req, res) => {
+    const allowedCommands = ['ls', 'whoami'];
+
+    const command = req.body.command;
+
+    if (!allowedCommands.includes(command)) {
+        return res.status(400).send("Command not allowed");
+    }
+
+    execFile(command, [], (err, stdout, stderr) => {
+        if (err) return res.status(500).send("Execution error");
+        res.send(stdout);
+    });
+});
 
 app.listen(3030, () => {
-    console.log("App running on port 3030")
-})
+    console.log("Secure app running on port 3030");
+});
