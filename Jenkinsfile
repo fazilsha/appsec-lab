@@ -27,6 +27,5 @@ pipeline {
                 sh 'docker run -d -p 4000:3030 --name appsec-test appsec-lab:1.0'
             }
         }
-}
     }
 }
