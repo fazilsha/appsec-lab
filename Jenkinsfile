@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        sonarRunner 'SonarScanner'
-    }
-
     stages {
 
         stage('Checkout') {
@@ -13,13 +9,22 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'sonar-scanner -Dsonar.projectKey=appsec-lab -Dsonar.sources=.'
-                }
-            }
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            sh '''
+            docker run --rm \
+              -e SONAR_HOST_URL=$SONAR_HOST_URL \
+              -e SONAR_TOKEN=$SONAR_AUTH_TOKEN \
+              -v $(pwd):/usr/src \
+              sonarsource/sonar-scanner-cli \
+              sonar-scanner \
+              -Dsonar.projectKey=appsec-lab \
+              -Dsonar.sources=/usr/src
+            '''
         }
+    }
+}
 
         stage('SAST - Semgrep') {
             steps {
