@@ -8,7 +8,17 @@ pipeline {
                 checkout scm
             }
         }
-
+	stage('SonarQube Analysis') {
+    	steps {
+        	withSonarQubeEnv('SonarQube') {
+            	sh '''
+            	sonar-scanner \
+            	-Dsonar.projectKey=appsec-lab \
+            	-Dsonar.sources=.
+           	 '''
+        }
+    }
+}
 	stage('SAST - Semgrep') {
     	steps {
         	sh 'semgrep --config=auto --error .'
