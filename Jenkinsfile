@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        sonarQubeScanner 'SonarScanner'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -8,22 +12,20 @@ pipeline {
                 checkout scm
             }
         }
-	stage('SonarQube Analysis') {
-    	steps {
-        	withSonarQubeEnv('SonarQube') {
-            	sh '''
-            	sonar-scanner \
-            	-Dsonar.projectKey=appsec-lab \
-            	-Dsonar.sources=.
-           	 '''
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'sonar-scanner -Dsonar.projectKey=appsec-lab -Dsonar.sources=.'
+                }
+            }
         }
-    }
-}
-	stage('SAST - Semgrep') {
-    	steps {
-        	sh 'semgrep --config=auto --error .'
-    		}
-	}
+
+        stage('SAST - Semgrep') {
+            steps {
+                sh 'semgrep --config=auto --error .'
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
