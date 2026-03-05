@@ -23,7 +23,7 @@ stage('SonarQube Analysis') {
                 sonar-scanner \
                 -Dsonar.projectKey=appsec-lab \
                 -Dsonar.projectName="AppSec Lab" \
-                -Dsonar.sources=.
+                -Dsonar.sources=app.js
                 '''
             }
         }
