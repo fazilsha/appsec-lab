@@ -18,8 +18,8 @@ stage('SonarQube Analysis') {
                 -e SONAR_HOST_URL=$SONAR_HOST_URL \
                 -e SONAR_TOKEN=$SONAR_TOKEN \
                 -v $(pwd):/usr/src \
-                -w /usr/src \
-                sonarsource/sonar-scanner-cli
+                sonarsource/sonar-scanner-cli \
+                -Dproject.settings=/usr/src/sonar-project.properties
                 '''
             }
         }
