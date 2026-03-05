@@ -18,10 +18,8 @@ stage('SonarQube Analysis') {
                 -e SONAR_HOST_URL=$SONAR_HOST_URL \
                 -e SONAR_TOKEN=$SONAR_TOKEN \
                 -v $(pwd):/usr/src \
-                sonarsource/sonar-scanner-cli \
-                sonar-scanner \
-                -Dsonar.projectKey=appsec-lab \
-                -Dsonar.sources=/usr/src
+                -w /usr/src \
+                sonarsource/sonar-scanner-cli
                 '''
             }
         }
