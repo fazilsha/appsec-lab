@@ -17,19 +17,18 @@ stage('SonarQube Analysis') {
                 docker run --rm \
                 -e SONAR_HOST_URL=$SONAR_HOST_URL \
                 -e SONAR_TOKEN=$SONAR_TOKEN \
-                -v $PWD:/usr/src \
+                -v $WORKSPACE:/usr/src \
                 -w /usr/src \
                 sonarsource/sonar-scanner-cli \
                 sonar-scanner \
                 -Dsonar.projectKey=appsec-lab \
                 -Dsonar.projectName="AppSec Lab" \
-                -Dsonar.sources=app.js
+                -Dsonar.sources=.
                 '''
             }
         }
     }
 }
-
         stage('SAST - Semgrep') {
             steps {
                 sh 'semgrep --config=auto --error .'
