@@ -27,7 +27,12 @@ pipeline {
                         -w /usr/src \
                         sonarsource/sonar-scanner-cli \
                         sonar-scanner \
-			-Dproject.settings=/usr/src/sonar-project.properties
+			-Dsonar.projectKey=appsec-lab \
+                	-Dsonar.projectName="AppSec Lab" \
+                	-Dsonar.sources=. \
+                	-Dsonar.inclusions=**/*.js \
+                	-Dsonar.exclusions=node_modules/** \
+                	-Dsonar.scm.disabled=true
                         '''
                     }
                 }
