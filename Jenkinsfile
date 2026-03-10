@@ -30,7 +30,7 @@ pipeline {
                         -Dsonar.projectKey=appsec-lab \
                         -Dsonar.projectName="AppSec Lab" \
                         -Dsonar.sources=. \
-                        -Dsonar.scm.provider=git
+                        -Dsonar.scm.disabled=true
                         '''
                     }
                 }
