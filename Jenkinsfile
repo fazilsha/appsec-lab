@@ -29,7 +29,8 @@ pipeline {
                         sonar-scanner \
                         -Dsonar.projectKey=appsec-lab \
                         -Dsonar.projectName="AppSec Lab" \
-                        -Dsonar.sources=. \
+                        -Dsonar.inclusions=**/*.js
+			-Dsonar.javascript.node.maxspace=4096
                         -Dsonar.scm.disabled=true
                         '''
                     }
