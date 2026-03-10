@@ -3,8 +3,8 @@ const { exec } = require('child_process');
 
 const app = express();
 
-const API_KEY = "123456-SECRET-KEY-ADMIN"; // hardcoded secret
-
+//const API_KEY = "123456-SECRET-KEY-ADM
+/**
 app.get('/user', (req, res) => {
     const user = req.query.user;
 
@@ -25,3 +25,4 @@ app.get('/ping', (req, res) => {
 app.listen(3030, () => {
     console.log("Secure App Running");
 });// webhook test
+**/
