@@ -29,6 +29,7 @@ pipeline {
                         sonar-scanner \
 			-Dsonar.projectKey=appsec-lab \
                 	-Dsonar.projectName="AppSec Lab" \
+			-Dsonar.projectBaseDir=/usr/src
                 	-Dsonar.sources=. \
                 	-Dsonar.inclusions=**/*.js \
                 	-Dsonar.exclusions=node_modules/** \
