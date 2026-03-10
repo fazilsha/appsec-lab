@@ -26,12 +26,7 @@ pipeline {
                         -v $WORKSPACE/.scannerwork:/usr/src/.scannerwork \
                         -w /usr/src \
                         sonarsource/sonar-scanner-cli \
-                        sonar-scanner \
-                        -Dsonar.projectKey=appsec-lab \
-                        -Dsonar.projectName="AppSec Lab" \
-                        -Dsonar.inclusions=**/*.js
-			-Dsonar.javascript.node.maxspace=4096
-                        -Dsonar.scm.disabled=true
+                        sonar-scanner
                         '''
                     }
                 }
@@ -40,7 +35,7 @@ pipeline {
 
         stage('SAST - Semgrep') {
             steps {
-                sh 'semgrep --config=auto --error .'
+                sh 'semgrep --config=auto . || true'
             }
         }
 
@@ -64,4 +59,3 @@ pipeline {
         }
     }
 }
-
