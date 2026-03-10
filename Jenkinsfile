@@ -26,7 +26,8 @@ pipeline {
                         -v $WORKSPACE/.scannerwork:/usr/src/.scannerwork \
                         -w /usr/src \
                         sonarsource/sonar-scanner-cli \
-                        sonar-scanner
+                        sonar-scanner \
+			-Dproject.settings=/usr/src/sonar-project.properties
                         '''
                     }
                 }
