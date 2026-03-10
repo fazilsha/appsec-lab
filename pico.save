@@ -1,0 +1,48 @@
+sonar.projectKey=appsec-lab
+sonar.projectName=AppSec Lab
+sonar.projectVersion=1.0
+
+sonar.sources=.
+sonar.sourceEncoding=UTF-8
+
+# JS detection
+sonar.javascript.file.suffixes=.js
+
+# Exclusions
+sonar.exclusions=node_modules/**
+
+# Disable SCM inside container
+sonar.scm.disabled=true
+sonar.projectKey=appsec-lab
+sonar.projectName=AppSec Lab
+sonar.projectVersion=1.0
+
+sonar.sources=.
+sonar.sourceEncoding=UTF-8
+
+# JS detection
+sonar.javascript.file.suffixes=.js
+
+# Exclusions
+sonar.exclusions=node_modules/**
+
+# Disable SCM inside container
+sonar.scm.disabled=truesonar.projectKey=appsec-lab
+sonar.projectName=AppSec Lab
+sonar.projectVersion=1.0
+
+sonar.sources=.
+sonar.sourceEncoding=UTF-8
+
+# JS detection
+sonar.javascript.file.suffixes=.js
+
+# Exclusions
+sonar.exclusions=node_modules/**
+
+# Disable SCM inside container
+sonar.scm.disabled=true
+
+
+
+
